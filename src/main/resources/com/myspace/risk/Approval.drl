@@ -1,0 +1,45 @@
+package com.myspace.risk;
+
+// Reject due to Demographic Assessment "Unsuitable"
+rule "Demographic Assessment Failed"
+	ruleflow-group "approval-decision"
+	dialect "mvel"
+	when
+		$app : Applicant( demographicAssessment == "Unsuitable" )
+	then
+		$app.setApproved( false );
+		$app.setExplanation( "Application rejected because Demographic Assessment says Unsuitable");
+end
+
+// Reject due to Credit Card Demographic Assessment "Unsuitable"
+rule "Credit Card Demographic Assessment Failed"
+	ruleflow-group "approval-decision"
+	dialect "mvel"
+	when
+		$app : Applicant( creditCardDemographicAssessment == "Unsuitable" )
+	then
+		$app.setApproved( false );
+		$app.setExplanation( "Application rejected because Credit Card Demographic Assessment says Unsuitable" );
+end
+
+// Reject due to Low Credit Score"
+rule "Credit Score Rejection"
+	ruleflow-group "approval-decision"
+	dialect "mvel"
+	when
+		$app : Applicant( demographicAssessment == "Suitable", creditCardDemographicAssessment == "Suitable", totalCreditScore < 500 )
+	then
+		$app.setApproved( false );
+		$app.setExplanation ( "Application rejected because Credit score is below 500" );
+end
+
+// Approve due to high enough Credit Score"
+rule "Credit Score Approval"
+	ruleflow-group "approval-decision"
+	dialect "mvel"
+	when
+		$app : Applicant( demographicAssessment == "Suitable", creditCardDemographicAssessment == "Suitable", totalCreditScore >= 500 )
+	then
+		$app.setApproved( true );
+		$app.setExplanation ( "Application approved Credit score is above or equal 500 and passed all Demographic assessments");
+end
