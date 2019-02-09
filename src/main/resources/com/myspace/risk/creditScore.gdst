@@ -37,7 +37,7 @@
           </typedDefaultValue>
           <hideColumn>false</hideColumn>
           <width>100</width>
-          <header># Defualt Payments in Last 12 Months &gt;=</header>
+          <header># of Default Payment in Last 12 Months &gt;=</header>
           <constraintValueType>1</constraintValueType>
           <factField>numberOfDefaultPaymentsLast12Months</factField>
           <fieldType>Integer</fieldType>
@@ -53,7 +53,7 @@
           </typedDefaultValue>
           <hideColumn>false</hideColumn>
           <width>100</width>
-          <header># Defualt Payments in Last 12 Months &lt;</header>
+          <header># of Default payment in last 12 months</header>
           <constraintValueType>1</constraintValueType>
           <factField>numberOfDefaultPaymentsLast12Months</factField>
           <fieldType>Integer</fieldType>
@@ -69,7 +69,7 @@
           </typedDefaultValue>
           <hideColumn>false</hideColumn>
           <width>100</width>
-          <header>Years with Bank &gt;=</header>
+          <header>Years with bank &gt;=</header>
           <constraintValueType>1</constraintValueType>
           <factField>yearsWithBank</factField>
           <fieldType>Integer</fieldType>
@@ -137,7 +137,7 @@
       <header>Sum Credit Scores</header>
       <definition>
         <org.drools.workbench.models.datamodel.rule.FreeFormLine>
-          <text>$app.setTotalCreditScore($app.getTotalCreditScore() + $app.getCreditScore());</text>
+          <text>$app.setTotalCreditScore( $app.getTotalCreditScore() + $app.getCreditScore() );</text>
         </org.drools.workbench.models.datamodel.rule.FreeFormLine>
       </definition>
       <childColumns>
@@ -436,7 +436,6 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric class="int">7</valueNumeric>
         <valueString></valueString>
         <dataType>NUMERIC_INTEGER</dataType>
         <isOtherwise>false</isOtherwise>
