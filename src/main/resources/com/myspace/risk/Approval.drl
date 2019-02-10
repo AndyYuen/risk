@@ -1,5 +1,35 @@
 package com.myspace.risk;
 
+// Start Ruleflow
+rule "Start Ruleflow" 
+    salience 50
+
+    when
+    then
+        System.out.println("Starting Ruleflow...");
+        kcontext.getKnowledgeRuntime().startProcess("risk.risk-assessment");
+end
+
+// Debug if Applicant is not in working memory
+rule "Debug not working memory" 
+    salience 100
+
+    when
+        not Applicant()
+    then
+        System.out.println("Debugging: Applicant is not in working memory.");
+end
+
+// Debug if Applicant is not in working memory
+rule "Debug in working memory" 
+    salience 100
+
+    when
+        $app: Applicant()
+    then
+        System.out.println("Debugging: Applicant: " + $app);
+end
+
 // Reject due to Demographic Assessment "Unsuitable"
 rule "Demographic Assessment Failed"
 	ruleflow-group "approval-decision"
@@ -7,6 +37,7 @@ rule "Demographic Assessment Failed"
 	when
 		$app : Applicant( demographicAssessment == "Unsuitable" )
 	then
+	    System.out.println("Rule fired: " + drools.getRule().getName());
 		$app.setApproved( false );
 		$app.setExplanation( "Application rejected because Demographic Assessment says Unsuitable");
 end
@@ -18,6 +49,7 @@ rule "Credit Card Demographic Assessment Failed"
 	when
 		$app : Applicant( creditCardDemographicAssessment == "Unsuitable" )
 	then
+	    System.out.println("Rule fired: " + drools.getRule().getName());
 		$app.setApproved( false );
 		$app.setExplanation( "Application rejected because Credit Card Demographic Assessment says Unsuitable" );
 end
@@ -29,6 +61,7 @@ rule "Credit Score Rejection"
 	when
 		$app : Applicant( demographicAssessment == "Suitable", creditCardDemographicAssessment == "Suitable", totalCreditScore < 500 )
 	then
+	    System.out.println("Rule fired: " + drools.getRule().getName());
 		$app.setApproved( false );
 		$app.setExplanation ( "Application rejected because Credit score is below 500" );
 end
@@ -40,6 +73,7 @@ rule "Credit Score Approval"
 	when
 		$app : Applicant( demographicAssessment == "Suitable", creditCardDemographicAssessment == "Suitable", totalCreditScore >= 500 )
 	then
+	    System.out.println("Rule fired: " + drools.getRule().getName());
 		$app.setApproved( true );
 		$app.setExplanation ( "Application approved Credit score is above or equal 500 and passed all Demographic assessments");
 end
