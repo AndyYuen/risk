@@ -12,13 +12,13 @@
   <attributeCols>
     <attribute-column52>
       <typedDefaultValue>
-        <valueString></valueString>
+        <valueString>demographic-assessment</valueString>
         <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </typedDefaultValue>
       <hideColumn>false</hideColumn>
       <width>100</width>
-      <attribute>ruleflow-group</attribute>
+      <attribute>agenda-group</attribute>
       <reverseOrder>false</reverseOrder>
       <useRowNumber>false</useRowNumber>
     </attribute-column52>

@@ -1,5 +1,5 @@
 package com.myspace.risk;
-
+/*
 // Start Ruleflow
 rule "Start Ruleflow" 
     salience 50
@@ -8,9 +8,12 @@ rule "Start Ruleflow"
     when
     then
         System.out.println("Rule fired: " + drools.getRule().getName());
-        System.out.println("Starting Ruleflow...risk.simple-ruleflow");
-        kcontext.getKnowledgeRuntime().startProcess("risk.simple-ruleflow");
+        //System.out.println("Starting Ruleflow...risk.simple-ruleflow");
+        //kcontext.getKnowledgeRuntime().startProcess("risk.simple-ruleflow");
+        System.out.println("Starting Ruleflow...risk.credit-assessment");
+        kcontext.getKnowledgeRuntime().startProcess("risk.credit-assessment");
 end
+*/
 /*
 // Debug if Applicant is not in working memory
 rule "Debug not working memory" 
