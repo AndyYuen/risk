@@ -1,32 +1,80 @@
 package com.myspace.risk;
 
-// Start Ruleflow
-rule "Start Ruleflow" 
-    salience 50
-
-    when
-    then
-        System.out.println("Starting Ruleflow...");
-        kcontext.getKnowledgeRuntime().startProcess("risk.risk-assessment");
-end
-
 // Debug if Applicant is not in working memory
-rule "Debug not working memory" 
-    salience 100
-
-    when
-        not Applicant()
-    then
-        System.out.println("Debugging: Applicant is not in working memory.");
-end
-
-// Debug if Applicant is not in working memory
-rule "Debug in working memory" 
-    salience 100
+rule "Print in working memory final-assessment" 
+    salience -100
+	ruleflow-group "final-assessment"
+	dialect "mvel"
 
     when
         $app: Applicant()
     then
+        System.out.println("Rule fired: " + drools.getRule().getName());
+        System.out.println("Debugging: Applicant: " + $app);
+end
+
+// Debug if Applicant is not in working memory
+rule "Print in working memory credit score" 
+    salience -100
+	ruleflow-group "creditScore"
+	dialect "mvel"
+
+    when
+        $app: Applicant()
+    then
+        System.out.println("Rule fired: " + drools.getRule().getName());
+        System.out.println("Debugging: Applicant: " + $app);
+end
+
+// Debug if Applicant is not in working memory
+rule "Print in working memory demographic-assessment" 
+    salience -100
+	ruleflow-group "demographic-assessment"
+	dialect "mvel"
+
+    when
+        $app: Applicant()
+    then
+        System.out.println("Rule fired: " + drools.getRule().getName());
+        System.out.println("Debugging: Applicant: " + $app);
+end
+
+// Debug if Applicant is not in working memory
+rule "Print in working memory creditCardDemographic-assessment" 
+    salience -100
+	ruleflow-group "creditCardDemographic-assessment"
+	dialect "mvel"
+
+    when
+        $app: Applicant()
+    then
+        System.out.println("Rule fired: " + drools.getRule().getName());
+        System.out.println("Debugging: Applicant: " + $app);
+end
+
+// Debug if Applicant is not in working memory
+rule "Print not in working memory" 
+    salience 100
+	ruleflow-group "approval-decision"
+	dialect "mvel"
+
+    when
+        not Applicant()
+    then
+        System.out.println("Rule fired: " + drools.getRule().getName());
+        System.out.println("Debugging: Applicant is not in working memory.");
+end
+
+// Debug if Applicant is not in working memory
+rule "Print in working memory" 
+    salience 100
+	ruleflow-group "approval-decision"
+	dialect "mvel"
+
+    when
+        $app: Applicant()
+    then
+        System.out.println("Rule fired: " + drools.getRule().getName());
         System.out.println("Debugging: Applicant: " + $app);
 end
 
